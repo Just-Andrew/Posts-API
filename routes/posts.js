@@ -3,23 +3,26 @@ const Post = require('../models/Post')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    res.send({ a: 5, b: 2 })
+router.get('/', async (req, res) => {
+    const posts = await Post.find((e)=> {
+        if(e) console.log(e)
+    })
+    res.json(posts)
 })
 
 router.post('/', async (req, res) => {
-    console.log(req.body)
-    const post = new Post({
-        ownerId: req.body.ownerId,
-        text: req.body.text
-    })
+    
     try {
         console.log('this block of code has been run')
+        const post = new Post({
+            ownerId: req.body.ownerId,
+            text: req.body.text
+        })
         const data = await post.save()
-        res.json(data)
-        console.log('completed without errors')
+        res.status(200).json({"postId":post._id})
     } catch (e) {
         console.log(e)
+        res.status(500).json("Error")
     }
 })
 

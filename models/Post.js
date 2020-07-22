@@ -8,15 +8,15 @@ const PostSchema = mongoose.Schema({
     text: {
         type: String,
         required: true
-    }
-  /*   likes: {
+    },
+    likes: {
         type: Number,
         default: 0
     },
     wasPostedOn: {
         type: Date,
         default: Date.now
-    } */
+    }
 })
 
 module.exports = mongoose.model('Post', PostSchema)
