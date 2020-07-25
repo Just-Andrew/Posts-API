@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const FormData = require('../helpers/FormData')
 
 const PostSchema = mongoose.Schema({
     ownerId: {
@@ -9,13 +10,17 @@ const PostSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    postedOn: {
+        type: String,
+        default: ''
+    },
     likes: {
         type: Number,
         default: 0
     },
-    wasPostedOn: {
-        type: Date,
-        default: Date.now
+    editedOn: {
+        type: String,
+        default: null
     }
 })
 
